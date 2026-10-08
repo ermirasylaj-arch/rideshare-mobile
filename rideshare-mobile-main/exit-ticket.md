@@ -1,8 +1,8 @@
 # EXIT TICKET: LIGJËRATA 1
 
-**Emri dhe Mbiemri:** Elvion Hakaj
-**ID e Studentit:** RE-28904/24
-**Email Zyrtar AAB:** [elvion.hakaj@universitetiaab.com]
+**Emri dhe Mbiemri:** Ermira Sylaj
+**ID e Studentit:** RE-46554/24
+**Email Zyrtar AAB:** [ermira.sylaj@universitetiaab.com]
 
 ### Pyetja 1: Problemi i Vëzhguar
 
