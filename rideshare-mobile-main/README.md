@@ -2,6 +2,10 @@
 
 Një demonstrim mësimor i rrjedhës së bashkudhëtimit, i ndërtuar me Next.js App Router dhe TypeScript. Të dhënat janë fiktive; aplikacioni nuk ruan rezervime, nuk kontakton shoferë dhe nuk përpunon pagesa.
 
+## Versioni publik
+
+Aplikacioni është publikuar në [rideshare-mobile-iota.vercel.app](https://rideshare-mobile-iota.vercel.app/). Production përdor `DATABASE_URL` si Vercel Secret; vlera nuk ruhet në repository.
+
 ## Kërkesat
 
 - Node.js 20.9 ose më i ri
