@@ -1,7 +1,26 @@
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
-import { udhetimet } from "@/lib/udhetimet";
+import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  let udhetimet: Udhetim[];
+  try {
+    udhetimet = await lexoUdhetimet();
+  } catch (error) {
+    console.error("Nuk u lexuan udhëtimet nga databaza.", error);
+    return (
+      <main className="page-shell">
+        <section className="intro">
+          <p className="eyebrow">PËRDITSHMËRIA, MË E THJESHTË</p>
+          <h1>Gjej rrugën<br />për në kampus.</h1>
+          <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+          <a className="button" href="/">Provo përsëri</a>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className="page-shell">
       <section className="intro">
@@ -11,6 +30,7 @@ export default function Home() {
           Udhëtime të përbashkëta drejt AAB-së. Zgjidh nisjen që të përshtatet
           dhe shiko hollësitë para se të kërkosh vend.
         </p>
+        <p className="intro__copy">Burimi: Neon · të dhëna fiktive për ushtrime</p>
         <div className="intro__meta">
           <span className="live-dot" aria-hidden="true" />
           <span>{udhetimet.length} udhëtime të planifikuara</span>
@@ -23,13 +43,20 @@ export default function Home() {
             <p className="eyebrow">E MËRKURË · 7 TETOR</p>
             <h2 id="rides-heading">Nisjet e ardhshme</h2>
           </div>
-          <span className="section-heading__count">03 / 03</span>
+          <span className="section-heading__count">
+            {String(udhetimet.length).padStart(2, "0")} /{" "}
+            {String(udhetimet.length).padStart(2, "0")}
+          </span>
         </div>
-        <div className="trip-list">
-          {udhetimet.map((udhetim) => (
-            <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
-          ))}
-        </div>
+        {udhetimet.length === 0 ? (
+          <p>Nuk ka udhëtime për momentin.</p>
+        ) : (
+          <div className="trip-list">
+            {udhetimet.map((udhetim) => (
+              <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
+            ))}
+          </div>
+        )}
         <p className="demo-note">
           Kërkesat në këtë demonstrim nuk krijojnë rezervime të vërteta.
         </p>

@@ -6,8 +6,17 @@ Një demonstrim mësimor i rrjedhës së bashkudhëtimit, i ndërtuar me Next.js
 
 - Node.js 20.9 ose më i ri
 - npm
+- Një databazë Neon PostgreSQL me tabelën nga [`schema.sql`](./schema.sql)
 
 ## Nisja lokale
+
+Krijo `.env.local` pranë `package.json` dhe vendos connection string-un e Neon:
+
+```env
+DATABASE_URL="connection-string-i-i-databazës-Neon"
+```
+
+Mos e publiko këtë vlerë. Skedari `.env.local` është i përjashtuar nga Git. Ekzekuto [`schema.sql`](./schema.sql) në Neon SQL Editor për të krijuar tabelën dhe të dhënat provuese.
 
 Në terminal, nga dosja kryesore e projektit:
 
@@ -17,6 +26,7 @@ npm run dev
 ```
 
 Hap adresën që shfaq terminali, zakonisht [http://localhost:3000](http://localhost:3000). Për të ndalur serverin, shtyp `Ctrl+C`.
+Nëse databaza nuk është konfiguruar ose lidhja dështon, faqet shfaqin mesazh gabimi; lista pa rreshta shfaq një mesazh të veçantë.
 
 ## Si ta testojë profesori
 
@@ -33,8 +43,9 @@ Hap adresën që shfaq terminali, zakonisht [http://localhost:3000](http://local
 npm run build
 ```
 
-Struktura e faqeve ndjek adresat `/`, `/udhetimi/[id]` dhe `/udhetimi/[id]/kerkesa`. Të dhënat e udhëtimeve gjenden te `src/lib/udhetimet.ts`; lista përdor komponentin `src/components/KartaUdhetimi.tsx`.
+Struktura e faqeve ndjek adresat `/`, `/udhetimi/[id]` dhe `/udhetimi/[id]/kerkesa`. Të dhënat e udhëtimeve lexohen nga Neon në `src/lib/udhetimet.ts`; lidhja private krijohet në `src/lib/db.ts`. Lista përdor komponentin `src/components/KartaUdhetimi.tsx`.
 
-## Raporti Java 3
+## Raportet
 
-Raporti i provave dhe përshkrimi i punës gjendet te [`java-03.md`](./java-03.md).
+- Raporti i Javës 3: [`java-03.md`](./java-03.md)
+- Raporti i Javës 4: [`java-04.md`](../java-04.md)

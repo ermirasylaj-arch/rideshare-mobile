@@ -2,13 +2,29 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
+export const dynamic = "force-dynamic";
+
 export default async function Kerkesa({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const udhetim = gjejUdhetimin(id);
+  let udhetim;
+  try {
+    udhetim = await gjejUdhetimin(id);
+  } catch (error) {
+    console.error("Nuk u lexua udhëtimi nga databaza.", error);
+    return (
+      <main className="page-shell page-shell--detail">
+        <section className="request-panel">
+          <h1>RideShare</h1>
+          <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+          <Link className="button button--wide" href="/">← Kthehu te lista</Link>
+        </section>
+      </main>
+    );
+  }
 
   if (!udhetim) {
     notFound();
@@ -24,11 +40,10 @@ export default async function Kerkesa({
             <p className="eyebrow">HAPI I FUNDIT · DEMONSTRIM</p>
             <h1>Simulim: Në pritje</h1>
             <p>
-              Kërkesa jote për udhëtimin {udhetim.nisja} – {udhetim.destinacioni}
-              {" "}nuk është dërguar te shoferi.
+              Kërkesa për {udhetim.nisja} nuk është dërguar te shoferi.
             </p>
             <p className="request-panel__note">
-              Ky demonstrim nuk ruan rezervime dhe nuk kontakton askënd.
+              Ruajtjen dhe konfirmimin real do t’i shtojmë më vonë.
             </p>
           </>
         ) : (

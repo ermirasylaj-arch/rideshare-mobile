@@ -2,13 +2,29 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
+export const dynamic = "force-dynamic";
+
 export default async function Detajet({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const udhetim = gjejUdhetimin(id);
+  let udhetim;
+  try {
+    udhetim = await gjejUdhetimin(id);
+  } catch (error) {
+    console.error("Nuk u lexua udhëtimi nga databaza.", error);
+    return (
+      <main className="page-shell page-shell--detail">
+        <section className="request-panel">
+          <h1>RideShare</h1>
+          <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+          <Link className="button button--wide" href="/">← Kthehu te lista</Link>
+        </section>
+      </main>
+    );
+  }
 
   if (!udhetim) {
     notFound();
@@ -33,10 +49,6 @@ export default async function Detajet({
           <div>
             <dt>Vendtakimi</dt>
             <dd>{udhetim.vendtakimi}</dd>
-          </div>
-          <div>
-            <dt>Udhëton me</dt>
-            <dd>{udhetim.shoferi} · {udhetim.vetura}</dd>
           </div>
           <div>
             <dt>Vende të lira</dt>
