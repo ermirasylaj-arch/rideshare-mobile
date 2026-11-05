@@ -8,7 +8,7 @@ Hyrja me GitHub verifikon identitetin dhe ruan ID-në e llogarisë në sesionin 
 
 ### Prova 1: Hyrja, rifreskimi dhe dalja
 
-`npm run build` përfundoi me sukses, përfshirë kontrollin TypeScript. Next.js 16.4.0 shfaqi paralajmërim për një dobësi sigurie; build-i përfundoi pas përsëritjes. Prova manuale e hyrjes, rifreskimit dhe daljes nuk u ekzekutua: `.env.local` ka vetëm `DATABASE_URL`, pa konfigurimin lokal të GitHub OAuth. Pas krijimit të OAuth App dhe konfigurimit lokal, provo `/panel` pa hyrje, hyrjen me GitHub, rifreskimin dhe daljen.
+`npm run build` në rrënjë përfundoi me sukses, përfshirë kontrollin TypeScript. U shtua varësia e munguar `next-auth`; tri skedarë prove jashtë `src/app` u përjashtuan nga kontrolli TypeScript sepse nuk janë pjesë e aplikacionit. Next.js 16.4.0 shfaqi paralajmërim për një dobësi sigurie. Prova manuale e hyrjes, rifreskimit dhe daljes nuk u ekzekutua, sepse GitHub OAuth nuk është konfiguruar në këtë checkout. Pas krijimit të OAuth App dhe konfigurimit lokal, provo `/panel` pa hyrje, hyrjen me GitHub, rifreskimin dhe daljen.
 
 ### Prova 2: Shoferi ndryshon udhëtimin e vet
 
@@ -20,10 +20,10 @@ Prova manuale kundër Neon nuk u ekzekutua këtu për të njëjtën arsye. Pas k
 
 ## Ku gjendet puna
 
-- Skema e Javës 5: `rideshare-mobile-main/schema-java05.sql`
-- Hyrja, lejet dhe profili: `rideshare-mobile-main/src/lib/auth.ts`, `rideshare-mobile-main/src/lib/lejet.ts`
-- Rruga e autentikimit: `rideshare-mobile-main/src/app/api/auth/[...nextauth]/route.ts`
-- Paneli dhe ruajtja: `rideshare-mobile-main/src/app/panel/page.tsx`, `rideshare-mobile-main/src/app/panel/actions.ts`
+- Skema e Javës 5: `schema-java05.sql`
+- Hyrja, lejet dhe profili: `src/lib/auth.ts`, `src/lib/lejet.ts`
+- Rruga e autentikimit: `src/app/api/auth/[...nextauth]/route.ts`
+- Paneli dhe ruajtja: `src/app/panel/page.tsx`, `src/app/panel/actions.ts`
 - Repository: https://github.com/ermirasylaj-arch/rideshare-mobile
 
 Sekretet OAuth dhe `DATABASE_URL` qëndrojnë në `.env.local` dhe nuk përfshihen këtu.
