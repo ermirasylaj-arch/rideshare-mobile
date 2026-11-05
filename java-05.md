@@ -8,15 +8,15 @@ Hyrja me GitHub verifikon identitetin dhe ruan ID-në e llogarisë në sesionin 
 
 ### Prova 1: Hyrja, rifreskimi dhe dalja
 
-`npm run build` përfundoi me sukses, përfshirë kontrollin TypeScript. Prova manuale e OAuth-it nuk u ekzekutua këtu, sepse kërkon OAuth App dhe sekretet personale në `.env.local`. Pas konfigurimit, provo `/panel` pa hyrje, hyrjen me GitHub, rifreskimin dhe daljen.
+`npm run build` përfundoi me sukses, përfshirë kontrollin TypeScript. Next.js 16.4.0 shfaqi paralajmërim për një dobësi sigurie; build-i përfundoi pas përsëritjes. Prova manuale e hyrjes, rifreskimit dhe daljes nuk u ekzekutua: `.env.local` ka vetëm `DATABASE_URL`, pa konfigurimin lokal të GitHub OAuth. Pas krijimit të OAuth App dhe konfigurimit lokal, provo `/panel` pa hyrje, hyrjen me GitHub, rifreskimin dhe daljen.
 
 ### Prova 2: Shoferi ndryshon udhëtimin e vet
 
-Prova manuale kundër Neon nuk u ekzekutua këtu. Paneli përgatit formularin për udhëtimin ID 2. Pas caktimit të rolit dhe pronarit në Neon, provo 08:25 dhe riktheje në 08:15; kontrollo panelin, listën, detajet dhe SQL Editor.
+Prova manuale kundër Neon nuk u ekzekutua këtu, sepse kërkon hyrje me GitHub dhe caktimin e rolit/pronarit në databazën personale. Paneli përgatit formularin për udhëtimin ID 2. Pas konfigurimit, provo 08:25, verifiko panelin, listën, detajet dhe SQL Editor, pastaj riktheje në 08:15.
 
 ### Prova 3: Veprimi pa leje refuzohet
 
-Prova manuale kundër Neon nuk u ekzekutua këtu. Kur OAuth dhe databaza të jenë konfiguruar, provo ID 1 nga formulari i hapur dhe verifiko mesazhin e refuzimit dhe orën 08:00 në Neon.
+Prova manuale kundër Neon nuk u ekzekutua këtu për të njëjtën arsye. Pas konfigurimit, ndrysho përkohësisht ID-në e formularit nga 2 në 1, provo ruajtjen dhe verifiko mesazhin e refuzimit dhe që ora e ID 1 mbetet 08:00 në Neon.
 
 ## Ku gjendet puna
 
