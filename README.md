@@ -35,6 +35,8 @@ npm run build
 
 Struktura e faqeve ndjek adresat `/`, `/udhetimi/[id]` dhe `/udhetimi/[id]/kerkesa`. Të dhënat e udhëtimeve gjenden te `src/lib/udhetimet.ts`; lista përdor komponentin `src/components/KartaUdhetimi.tsx`.
 
-## Raporti Java 3
+## Raportet
 
-Raporti i provave dhe përshkrimi i punës gjendet te [`java-03.md`](./java-03.md).
+- Raporti Java 3: [`java-03.md`](./java-03.md)
+- Raporti Java 4: [`java-04.md`](./java-04.md)
+- Raporti Java 5: [`java-05.md`](./java-05.md)

@@ -130,6 +130,70 @@ button {
   font-weight: 600;
 }
 
+.intro__account {
+  margin: 0;
+}
+
+.account-shell {
+  width: min(100% - 48px, 700px);
+  min-height: calc(100vh - 144px);
+  margin: 0 auto;
+  padding: 52px 0 65px;
+}
+
+.account-shell h1 {
+  margin: 0 0 18px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: clamp(34px, 6vw, 48px);
+  letter-spacing: -2px;
+}
+
+.account-shell > p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.account-shell form {
+  display: grid;
+  max-width: 480px;
+  margin: 30px 0;
+  padding: 24px;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface);
+}
+
+.account-shell form h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.account-shell form label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.account-shell input[type="time"] {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.account-shell form .button {
+  justify-self: start;
+}
+
+.account-shell form p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
 .live-dot {
   width: 8px;
   height: 8px;
@@ -448,6 +512,7 @@ button {
 @media (max-width: 560px) {
   .site-header,
   .page-shell,
+  .account-shell,
   .site-footer {
     width: min(100% - 32px, 1080px);
   }
@@ -470,6 +535,14 @@ button {
 
   .intro__copy {
     font-size: 14px;
+  }
+
+  .account-shell {
+    padding-top: 32px;
+  }
+
+  .account-shell form {
+    padding: 18px;
   }
 
   .rides {

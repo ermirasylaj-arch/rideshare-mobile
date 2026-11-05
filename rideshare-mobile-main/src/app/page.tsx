@@ -1,5 +1,6 @@
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
 import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,9 @@ export default async function Home() {
         <section className="intro">
           <p className="eyebrow">PËRDITSHMËRIA, MË E THJESHTË</p>
           <h1>Gjej rrugën<br />për në kampus.</h1>
+          <p className="intro__account">
+            <Link className="button" href="/panel">Hyr / Paneli im</Link>
+          </p>
           <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
           <a className="button" href="/">Provo përsëri</a>
         </section>
@@ -29,6 +33,9 @@ export default async function Home() {
         <p className="intro__copy">
           Udhëtime të përbashkëta drejt AAB-së. Zgjidh nisjen që të përshtatet
           dhe shiko hollësitë para se të kërkosh vend.
+        </p>
+        <p className="intro__account">
+          <Link className="button" href="/panel">Hyr / Paneli im</Link>
         </p>
         <p className="intro__copy">Burimi: Neon · të dhëna fiktive për ushtrime</p>
         <div className="intro__meta">

@@ -18,9 +18,19 @@ Krijo `.env.local` pranë `package.json` dhe vendos connection string-un e Neon:
 
 ```env
 DATABASE_URL="connection-string-i-i-databazës-Neon"
+GITHUB_ID="Client-ID-i-OAuth-App"
+GITHUB_SECRET="Client-secret-i-OAuth-App"
+NEXTAUTH_SECRET="sekret-i-rastësishëm-i-sesionit"
+NEXTAUTH_URL="http://localhost:3000"
 ```
 
-Mos e publiko këtë vlerë. Skedari `.env.local` është i përjashtuar nga Git. Ekzekuto [`schema.sql`](./schema.sql) në Neon SQL Editor për të krijuar tabelën dhe të dhënat provuese.
+Krijo një GitHub OAuth App me homepage `http://localhost:3000` dhe callback `http://localhost:3000/api/auth/callback/github`. Gjenero `NEXTAUTH_SECRET` lokalisht me:
+
+```bash
+node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
+```
+
+Mos i publiko këto vlera. Skedari `.env.local` është i përjashtuar nga Git. Ekzekuto [`schema.sql`](./schema.sql) në Neon SQL Editor për të krijuar tabelën dhe të dhënat provuese, pastaj ekzekuto [`schema-java05.sql`](./schema-java05.sql) për tabelën e profileve dhe pronarët e demonstrimit.
 
 Në terminal, nga dosja kryesore e projektit:
 
@@ -49,7 +59,18 @@ npm run build
 
 Struktura e faqeve ndjek adresat `/`, `/udhetimi/[id]` dhe `/udhetimi/[id]/kerkesa`. Të dhënat e udhëtimeve lexohen nga Neon në `src/lib/udhetimet.ts`; lidhja private krijohet në `src/lib/db.ts`. Lista përdor komponentin `src/components/KartaUdhetimi.tsx`.
 
+Java 5 shton `/panel` dhe hyrjen me GitHub. Përdor të njëjtin port dhe host (`localhost`) në URL-në lokale, GitHub OAuth App dhe `NEXTAUTH_URL`. Pas hyrjes, cakto rolin `shofer` dhe pronarin e ID 2 në Neon SQL Editor sipas udhëzimeve të ushtrimit; mos lejo që përdoruesit të ndryshojnë rolin ose `shofer_id`-në nga formulari.
+
+Për databazën tënde lokale, kopjo ID-në numerike që shfaq paneli dhe zëvendëso `ID_GITHUB` para se t’i ekzekutosh këto komanda në Neon SQL Editor:
+
+```sql
+UPDATE profilet SET roli = 'shofer' WHERE github_id = 'ID_GITHUB';
+UPDATE udhetimet SET shofer_id = 'ID_GITHUB' WHERE id = '2';
+SELECT id, ora, shofer_id FROM udhetimet ORDER BY id;
+```
+
 ## Raportet
 
 - Raporti i Javës 3: [`java-03.md`](./java-03.md)
 - Raporti i Javës 4: [`java-04.md`](../java-04.md)
+- Raporti i Javës 5: [`java-05.md`](../java-05.md)
