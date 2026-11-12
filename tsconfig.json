@@ -36,9 +36,6 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "page.tsx",
-    "page (1).tsx",
-    "page (2).tsx"
+    "node_modules"
   ]
 }

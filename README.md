@@ -2,14 +2,19 @@
 
 Një demonstrim mësimor i rrjedhës së bashkudhëtimit, i ndërtuar me Next.js App Router dhe TypeScript. Të dhënat janë fiktive; aplikacioni nuk ruan rezervime, nuk kontakton shoferë dhe nuk përpunon pagesa.
 
+## Versioni publik
+
+Aplikacioni është publikuar në [rideshare-mobile-iota.vercel.app](https://rideshare-mobile-iota.vercel.app/). Production përdor `DATABASE_URL` si Vercel Secret; vlera nuk ruhet në repository.
+
 ## Kërkesat
 
 - Node.js 20.9 ose më i ri
 - npm
+- Një databazë Neon PostgreSQL me tabelën nga [`schema.sql`](./schema.sql)
 
 ## Nisja lokale
 
-Krijo `.env.local` pranë `package.json` dhe vendos adresën e Neon-it dhe vlerat e GitHub OAuth:
+Krijo `.env.local` pranë `package.json` dhe vendos connection string-un e Neon:
 
 ```env
 DATABASE_URL="connection-string-i-i-databazës-Neon"
@@ -19,13 +24,13 @@ NEXTAUTH_SECRET="sekret-i-rastësishëm-i-sesionit"
 NEXTAUTH_URL="http://localhost:3000"
 ```
 
-Në GitHub krijo një OAuth App me homepage `http://localhost:3000` dhe callback `http://localhost:3000/api/auth/callback/github`. Gjenero `NEXTAUTH_SECRET` lokalisht me:
+Krijo një GitHub OAuth App me homepage `http://localhost:3000` dhe callback `http://localhost:3000/api/auth/callback/github`. Gjenero `NEXTAUTH_SECRET` lokalisht me:
 
 ```bash
 node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
 ```
 
-Ekzekuto fillimisht [`schema.sql`](./schema.sql), pastaj [`schema-java05.sql`](./schema-java05.sql) në Neon SQL Editor. Skema e Javës 5 shton profilin dhe pronarin pa fshirë udhëtimet. Mos i publiko vlerat e `.env.local`; skedari përjashtuar është `.env*`.
+Mos i publiko këto vlera. Skedari `.env.local` është i përjashtuar nga Git. Ekzekuto [`schema.sql`](./schema.sql) në Neon SQL Editor për të krijuar tabelën dhe të dhënat provuese, pastaj ekzekuto [`schema-java05.sql`](./schema-java05.sql) për tabelën e profileve dhe pronarët e demonstrimit.
 
 Në terminal, nga dosja kryesore e projektit:
 
@@ -35,6 +40,7 @@ npm run dev
 ```
 
 Hap adresën që shfaq terminali, zakonisht [http://localhost:3000](http://localhost:3000). Për të ndalur serverin, shtyp `Ctrl+C`.
+Nëse databaza nuk është konfiguruar ose lidhja dështon, faqet shfaqin mesazh gabimi; lista pa rreshta shfaq një mesazh të veçantë.
 
 ## Si ta testojë profesori
 
@@ -51,9 +57,11 @@ Hap adresën që shfaq terminali, zakonisht [http://localhost:3000](http://local
 npm run build
 ```
 
-Struktura e faqeve ndjek adresat `/`, `/udhetimi/[id]` dhe `/udhetimi/[id]/kerkesa`. Të dhënat e udhëtimeve gjenden te `src/lib/udhetimet.ts`; lista përdor komponentin `src/components/KartaUdhetimi.tsx`.
+Struktura e faqeve ndjek adresat `/`, `/udhetimi/[id]` dhe `/udhetimi/[id]/kerkesa`. Të dhënat e udhëtimeve lexohen nga Neon në `src/lib/udhetimet.ts`; lidhja private krijohet në `src/lib/db.ts`. Lista përdor komponentin `src/components/KartaUdhetimi.tsx`.
 
-Java 5 shton hyrjen me GitHub dhe panelin `/panel`. Pas hyrjes, përdor ID-në e shfaqur në panel për t'i caktuar vetes rolin `shofer` dhe udhëtimin ID 2 në Neon SQL Editor:
+Java 5 shton `/panel` dhe hyrjen me GitHub. Përdor të njëjtin port dhe host (`localhost`) në URL-në lokale, GitHub OAuth App dhe `NEXTAUTH_URL`. Pas hyrjes, cakto rolin `shofer` dhe pronarin e ID 2 në Neon SQL Editor sipas udhëzimeve të ushtrimit; mos lejo që përdoruesit të ndryshojnë rolin ose `shofer_id`-në nga formulari.
+
+Për databazën tënde lokale, kopjo ID-në numerike që shfaq paneli dhe zëvendëso `ID_GITHUB` para se t’i ekzekutosh këto komanda në Neon SQL Editor:
 
 ```sql
 UPDATE profilet SET roli = 'shofer' WHERE github_id = 'ID_GITHUB';
@@ -61,10 +69,8 @@ UPDATE udhetimet SET shofer_id = 'ID_GITHUB' WHERE id = '2';
 SELECT id, ora, shofer_id FROM udhetimet ORDER BY id;
 ```
 
-Zëvendëso `ID_GITHUB` me ID-në numerike të llogarisë tënde. Mos e vendos ID-në ose rolin në formular; serveri i verifikon nga sesioni dhe databaza.
-
 ## Raportet
 
-- Raporti Java 3: [`java-03.md`](./java-03.md)
-- Raporti Java 4: [`java-04.md`](./java-04.md)
-- Raporti Java 5: [`java-05.md`](./java-05.md)
+- Raporti i Javës 3: [`java-03.md`](./java-03.md)
+- Raporti i Javës 4: [`java-04.md`](../java-04.md)
+- Raporti i Javës 5: [`java-05.md`](../java-05.md)

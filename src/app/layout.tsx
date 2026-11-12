@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import Pwa from "@/components/Pwa";
 
 export const metadata: Metadata = {
   title: "Rruga | Udhëtime për në AAB",
@@ -13,8 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sq">
+    <html lang="sq" data-test="layout-punon">
       <body>
+        <Pwa />
         <header className="site-header">
           <Link className="brand" href="/" aria-label="Rruga, faqja kryesore">
             <span className="brand__mark" aria-hidden="true">R</span>

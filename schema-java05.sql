@@ -1,4 +1,4 @@
--- Ekzekuto vetëm në databazën tënde të laboratorit nga Java 4.
+-- Run only in your Java 4 lab database. This preserves the existing trips.
 CREATE TABLE IF NOT EXISTS profilet (
   github_id TEXT PRIMARY KEY,
   emri TEXT NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS profilet (
 ALTER TABLE udhetimet
   ADD COLUMN IF NOT EXISTS shofer_id TEXT REFERENCES profilet(github_id);
 
--- Pronari fiktiv i ID 1 përdoret për të provuar refuzimin e një shoferi tjetër.
+-- A fictional owner for trip 1, used to verify that another driver's trip is denied.
 INSERT INTO profilet (github_id, emri, roli)
 VALUES ('DEMO-SHOFER-2', 'Shoferi tjetër (demo)', 'shofer')
 ON CONFLICT (github_id) DO NOTHING;
