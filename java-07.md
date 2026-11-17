@@ -1,114 +1,84 @@
-# Java 7 – RideShare
+# Java 07 – Case 2: No seats
 
-## 1. Rasti i zgjedhur
+## Rasti im
 
-**Case 2 – No seats**
+- **Java:** 7
+- **Rasti:** Case 2 – No seats
+- **Kodi i rastit:** P7-876
+- **GitHub:** ermirasylaj-arch
+- **Repository:** https://github.com/ermirasylaj-arch/rideshare-mobile
 
-**Kodi i rastit:** `P7-876`
+## Parashikimi
 
-Qëllimi ishte të sigurohej që përdoruesi të mund t'i shohë detajet e një udhëtimi edhe kur nuk ka vende të lira, por të mos mund të kërkojë vend.
+Kur një udhëtim nuk ka vende të lira, ai duhet të mbetet i dukshëm në listën e udhëtimeve dhe përdoruesi duhet të ketë mundësi ta hapë për të parë detajet. Në detajet e udhëtimit nuk duhet të shfaqet mundësia për të kërkuar vend kur numri i vendeve të lira është zero.
 
-## 2. Problemi i identifikuar
+## Ndryshimi i ri
 
-Gjatë kontrollimit të ndërfaqes u identifikuan dy probleme:
+U përditësua paraqitja e udhëtimeve pa vende të lira:
 
-1. Kur udhëtimi ishte plot, në kartelë nuk ishte e qartë se si përdoruesi mund t'i hapte detajet e udhëtimit.
-2. Numri i vendeve shfaqej në formatin `03 / 03`, pa shpjegim të mjaftueshëm për vlerat.
-
-## 3. Ndryshimi i realizuar
-
-Në komponentin `src/components/KartaUdhetimi.tsx` u ruajt lidhja **“Shiko udhëtimin”**, edhe kur udhëtimi është plot.
-
-Në listën e udhëtimeve shfaqet statusi **“Plot”** kur nuk ka vende të lira. Në faqen e detajeve, kërkesa për vend nuk ofrohet kur numri i vendeve të lira është zero.
-
-Kështu përdoruesi mund t'i shohë hollësitë e udhëtimit pa krijuar përshtypjen se mund të kërkojë një vend që nuk ekziston.
-
-## 4. Testimi manual
-
-Testimi u realizua në aplikacionin lokal, të lidhur me databazën testuese Neon (`rideshare-test`).
-
-### Testi 1 – Udhëtim pa vende të lira
-
-- ID: `3`
-- Nisja: Lipjan
-- Destinacioni: AAB
-- Ora: 07:45
-- Vendtakimi: Qendra e qytetit
-- Vende të lira: 0
-
-**Rezultati: KALOI**
-
-U verifikua se:
-
-- Në listën e udhëtimeve shfaqet statusi “Plot”.
+- Udhëtimi i plotë vazhdon të shfaqet në listë.
+- Në listë shfaqet statusi “Plot”.
 - Lidhja “Shiko udhëtimin” mbetet e dukshme.
-- Hapet faqja e detajeve `/udhetimi/3`.
-- Shfaqen 0 vende të lira.
-- Shfaqet mesazhi “Nuk ka vende të lira”.
-- Nuk ofrohet mundësia për të kërkuar vend.
+- Në faqen e detajeve shfaqet mesazhi “Nuk ka vende të lira”.
+- Kur nuk ka vende të lira, nuk shfaqet butoni “Kërko vend”.
 
-### Testi 2 – Udhëtim me vende të lira
+## Ndihma nga AI
 
-- ID: `1`
-- Nisja: Prishtinë
-- Destinacioni: AAB
-- Ora: 08:00
-- Vendtakimi: Stacioni i autobusëve
-- Vende të lira: 2
+U përdor GitHub Copilot dhe ChatGPT për ndihmë gjatë analizimit të problemit, planifikimit të ndryshimit, kontrollimit të kodit dhe përgatitjes së raportit. Ndryshimet dhe testimet u kontrolluan manualisht.
 
-**Rezultati: KALOI**
+## Dy probleme
 
-U verifikua se:
+1. Udhëtimi me zero vende të lira duhet të mbetet i dukshëm në listë dhe të ketë lidhjen “Shiko udhëtimin”.
+2. Në detajet e një udhëtimi të plotë nuk duhet të jetë e mundur të kërkohet vend.
 
-- Hapet faqja e detajeve `/udhetimi/1`.
-- Shfaqen 2 vende të lira.
-- Butoni “Kërko vend” është i dukshëm.
-- Lidhja e kërkesës hap faqen `/udhetimi/1/kerkesa`.
+## Korrigjimi (arsyeja)
 
-Ky test konfirmoi se ndryshimi nuk e pengon përdorimin normal të udhëtimeve që kanë vende të lira.
+U korrigjua kushti i paraqitjes së udhëtimit dhe i kontrollit të vendeve të lira. Udhëtimi nuk fshihet vetëm pse numri i vendeve është zero. Përdoruesi mund t'i shohë detajet, por nuk mund të kërkojë vend në një udhëtim të plotë.
 
-## 5. Kontrollimi i databazës
+**Skedari:** `src/components/KartaUdhetimi.tsx`
 
-U përdor databaza testuese Neon.
+## Prova 1
 
-Pyetja SQL e përdorur për kontrollimin e udhëtimit ishte:
+- **Hapat:** U hap lista e udhëtimeve dhe u kontrollua udhëtimi ID 3, Lipjan → AAB, ora 07:45, me 0 vende të lira.
+- **Pritshmëria:** Udhëtimi të shfaqet në listë me statusin “Plot” dhe me lidhjen “Shiko udhëtimin”.
+- **Vëzhgimi:** Udhëtimi u shfaq me statusin “Plot” dhe lidhja “Shiko udhëtimin” ishte e dukshme.
+
+## Prova 2
+
+- **Hapat:** U hapën detajet e udhëtimit ID 3, i cili ka 0 vende të lira.
+- **Pritshmëria:** Të shfaqet mesazhi “Nuk ka vende të lira” dhe të mos shfaqet butoni “Kërko vend”.
+- **Vëzhgimi:** Mesazhi “Nuk ka vende të lira” u shfaq dhe butoni “Kërko vend” nuk u shfaq.
+
+## Prova 3
+
+- **Hapat:** U hapën detajet e udhëtimit ID 1, Prishtinë → AAB, ora 08:00, me 2 vende të lira.
+- **Pritshmëria:** Udhëtimi të shfaqë mundësinë për të kërkuar vend, sepse ka vende të lira.
+- **Vëzhgimi:** Butoni “Kërko vend” u shfaq siç pritej.
+
+## Kontrolli i databazës
+
+U kontrollua numri i vendeve të lira për udhëtimin ID 3 në databazën Neon me pyetjen:
 
 ```sql
-SELECT id, vende
-FROM udhetimet
-WHERE id = '3';
+SELECT id, vende FROM udhetimet WHERE id = '3';
 ```
 
-Rezultati i marrë:
+Rezultati konfirmoi se udhëtimi ID 3 kishte `vende = 0`.
 
-|  id | vende |
-| --: | ----: |
-|   3 |     0 |
+## Kontrollet teknike
 
-Aplikacioni lexoi me sukses tri udhëtime nga databaza testuese.
+- Next.js u përditësua në versionin 16.4.6.
+- `npx tsc --noEmit --incremental false` përfundoi me sukses.
+- `npm run build` përfundoi me sukses.
 
-## 6. Kontrollimi teknik
+## Dëshmitë
 
-- Next.js u përditësua në versionin `16.4.6`.
-- U përditësuan `package.json` dhe `package-lock.json`.
-- `tsconfig.json` u kufizua për të përfshirë skedarët përkatës të projektit në `src` dhe skedarët e nevojshëm të Next.js.
-- Komanda `npx tsc --noEmit --incremental false` përfundoi me sukses.
-- Komanda `npm run build` përfundoi me sukses pas përditësimeve.
+Tri screenshot-et e testimit janë ruajtur në folderin `Java-07-Screenshotet` në Desktop:
 
-## 7. Përdorimi i inteligjencës artificiale
+1. `01-lista-udhetimeve.png` – lista e udhëtimeve.
+2. `02-udhetimi-3-plot.png` – detajet e udhëtimit ID 3 pa vende të lira.
+3. `03-udhetimi-1-vende-lira.png` – detajet e udhëtimit ID 1 me vende të lira.
 
-U përdor Copilot për të analizuar problemin në kartelën e udhëtimit dhe për të propozuar ruajtjen e lidhjes për hapjen e detajeve edhe kur udhëtimi është plot.
+## Gjendja e dorëzimit
 
-Ndryshimi u kontrollua dhe u testua manualisht në aplikacionin lokal me dy raste: një udhëtim pa vende të lira dhe një udhëtim me vende të lira.
-
-## 8. Dëshmitë dhe gjendja e dorëzimit
-
-Tri screenshot-et e testimit janë realizuar dhe ruajtur në folderin `Java-07-Screenshotet` në Desktop:
-
-1. Screenshot i listës ku udhëtimi ID 3 shfaqet “Plot” dhe ka lidhjen “Shiko udhëtimin”.
-2. Screenshot i detajeve të udhëtimit ID 3 me 0 vende të lira dhe mesazhin “Nuk ka vende të lira”.
-3. Screenshot i detajeve të udhëtimit ID 1 me 2 vende të lira dhe butonin “Kërko vend”.
-
-**Gjendja e GitHub:** Ndryshimet e Javës 7 janë kryer me sukses në commit dhe janë publikuar në degën `main` të GitHub.
-
-**Demo me kolegun:** Ende nuk është realizuar. Mbetet për t'u demonstruar puna dhe rezultatet e testimit.
+Kodi dhe raporti janë publikuar në degën `main` të GitHub. Demonstrimi me kolegun ende nuk është realizuar dhe mbetet për t'u bërë.
