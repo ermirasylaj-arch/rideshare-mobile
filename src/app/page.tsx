@@ -1,4 +1,7 @@
-import { KartaUdhetimi } from "@/components/KartaUdhetimi";
+import { getServerSession } from "next-auth";
+import { ListaUdhetimesh } from "@/components/ListaUdhetimesh";
+import { authOptions } from "@/lib/auth";
+import { lexoPreferimet } from "@/lib/preferimet";
 import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 import Link from "next/link";
 
@@ -23,6 +26,27 @@ export default async function Home() {
         </section>
       </main>
     );
+  }
+
+  let eshteKycur = false;
+  let preferimet: string[] = [];
+  let gabimNeLexim = false;
+
+  try {
+    const session = await getServerSession(authOptions);
+    const githubId = session?.user?.id;
+    if (githubId && /^\d+$/.test(githubId)) {
+      eshteKycur = true;
+      try {
+        preferimet = await lexoPreferimet(githubId);
+      } catch (error) {
+        console.error("Nuk u lexuan preferimet nga databaza.", error);
+        gabimNeLexim = true;
+      }
+    }
+  } catch (error) {
+    console.error("Nuk u verifikua sesioni i përdoruesit.", error);
+    gabimNeLexim = true;
   }
 
   return (
@@ -58,11 +82,12 @@ export default async function Home() {
         {udhetimet.length === 0 ? (
           <p>Nuk ka udhëtime për momentin.</p>
         ) : (
-          <div className="trip-list">
-            {udhetimet.map((udhetim) => (
-              <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
-            ))}
-          </div>
+          <ListaUdhetimesh
+            udhetimet={udhetimet}
+            preferimetFillestare={preferimet}
+            eshteKycur={eshteKycur}
+            gabimNeLexim={gabimNeLexim}
+          />
         )}
         <p className="demo-note">
           Kërkesat në këtë demonstrim nuk krijojnë rezervime të vërteta.

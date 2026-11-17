@@ -282,6 +282,29 @@ button {
   min-width: 0;
 }
 
+.favorite-summary {
+  display: flex;
+  margin: 0 0 16px;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.favorite-summary > span {
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.favorite-summary small {
+  color: var(--muted);
+}
+
+.favorite-list-error {
+  color: var(--coral);
+  font-size: 13px;
+}
+
 .trip-card__route {
   margin: 2px 0 5px;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -308,6 +331,46 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+.favorite-control {
+  display: flex;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px 12px;
+}
+
+.favorite-button,
+.favorite-login {
+  padding: 4px 0;
+  border: 0;
+  color: var(--green-dark);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.favorite-button:disabled {
+  cursor: default;
+}
+
+.favorite-button:not(:disabled):hover,
+.favorite-login:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.favorite-message {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.favorite-message--error {
+  color: var(--coral);
 }
 
 .seat-status {
