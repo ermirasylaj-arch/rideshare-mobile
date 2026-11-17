@@ -461,6 +461,92 @@ button {
   background: var(--mint);
 }
 
+.meeting-picker {
+  display: grid;
+  margin: 24px 0;
+  padding: 20px;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbfcfa;
+}
+
+.meeting-picker h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.meeting-picker__intro,
+.meeting-picker__confirmed,
+.meeting-picker__message,
+.meeting-picker__accuracy {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.meeting-picker__intro,
+.meeting-picker__accuracy {
+  color: var(--muted);
+}
+
+.meeting-picker label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.meeting-picker input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: white;
+  font: inherit;
+}
+
+.meeting-picker input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.meeting-picker__actions {
+  display: grid;
+  gap: 10px;
+}
+
+.meeting-picker__actions .button {
+  width: 100%;
+}
+
+.meeting-picker__actions .button--outline {
+  margin-top: 0;
+}
+
+.meeting-picker__actions .button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.meeting-picker__confirmed strong {
+  color: var(--green-dark);
+}
+
+.meeting-picker__message {
+  min-height: 1.5em;
+}
+
+.meeting-picker__message--error {
+  color: var(--coral);
+}
+
+@media (min-width: 540px) {
+  .meeting-picker__actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .demo-note--detail {
   text-align: center;
 }

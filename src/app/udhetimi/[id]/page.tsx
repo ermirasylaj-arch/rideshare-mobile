@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ZgjedhVendtakimin } from "@/components/VendtakimiLokale";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
 export const dynamic = "force-dynamic";
@@ -55,6 +56,7 @@ export default async function Detajet({
             <dd>{udhetim.vende}</dd>
           </div>
         </dl>
+        <ZgjedhVendtakimin />
         {paVende ? (
           <button className="button button--muted button--wide" disabled>
             Nuk ka vende të lira
