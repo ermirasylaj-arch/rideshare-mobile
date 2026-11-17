@@ -25,31 +25,25 @@ U përdor GitHub Copilot dhe ChatGPT për analizimin e problemit, planifikimin e
 
 U ndryshua kushti i paraqitjes së udhëtimit që udhëtimet me zero vende të mos fshihen nga lista. Gjithashtu, kërkesa për vend shfaqet vetëm kur ka vende të lira.
 
-Skedari: src/components/KartaUdhetimi.tsx
+Skedari: `src/components/KartaUdhetimi.tsx`
 
 ## Prova 1
 
-Hapat: U hap lista e udhëtimeve dhe u kontrollua udhëtimi ID 3, Lipjan – AAB, ora 07:45, me zero vende.
-
-Pritshmëria: Udhëtimi të shfaqet me statusin “Plot” dhe lidhjen “Shiko udhëtimin”.
-
-Vëzhgimi: Udhëtimi u shfaq me statusin “Plot” dhe lidhja “Shiko udhëtimin” ishte e dukshme.
+- Hapat: U hap lista e udhëtimeve dhe u kontrollua udhëtimi ID 3, Lipjan – AAB, ora 07:45, me zero vende.
+- Pritshmëria: Udhëtimi të shfaqet me statusin “Plot” dhe lidhjen “Shiko udhëtimin”.
+- Vëzhgimi: Udhëtimi u shfaq me statusin “Plot” dhe lidhja “Shiko udhëtimin” ishte e dukshme.
 
 ## Prova 2
 
-Hapat: U hapën detajet e udhëtimit ID 3, me zero vende të lira.
-
-Pritshmëria: Të shfaqet “Nuk ka vende të lira” dhe të mos shfaqet “Kërko vend”.
-
-Vëzhgimi: Mesazhi “Nuk ka vende të lira” u shfaq dhe butoni “Kërko vend” nuk u shfaq.
+- Hapat: U hapën detajet e udhëtimit ID 3, me zero vende të lira.
+- Pritshmëria: Të shfaqet “Nuk ka vende të lira” dhe të mos shfaqet “Kërko vend”.
+- Vëzhgimi: Mesazhi “Nuk ka vende të lira” u shfaq dhe butoni “Kërko vend” nuk u shfaq.
 
 ## Prova 3
 
-Hapat: U hapën detajet e udhëtimit ID 1, Prishtinë – AAB, ora 08:00, me dy vende të lira.
-
-Pritshmëria: Të shfaqet mundësia për të kërkuar vend.
-
-Vëzhgimi: Butoni “Kërko vend” u shfaq siç pritej.
+- Hapat: U hapën detajet e udhëtimit ID 1, Prishtinë – AAB, ora 08:00, me dy vende të lira.
+- Pritshmëria: Të shfaqet mundësia për të kërkuar vend.
+- Vëzhgimi: Butoni “Kërko vend” u shfaq siç pritej.
 
 ## Kontrolli i databazës
 
@@ -64,17 +58,17 @@ Rezultati konfirmoi se udhëtimi ID 3 kishte vende = 0.
 ## Kontrollet teknike
 
 - Next.js u përditësua në versionin 16.4.6.
-- npx tsc --noEmit --incremental false përfundoi me sukses.
-- npm run build përfundoi me sukses.
+- `npx tsc --noEmit --incremental false` përfundoi me sukses.
+- `npm run build` përfundoi me sukses.
 
 ## Dëshmitë
 
-Screenshot-et e testimit janë ruajtur në folderin Java-07-Screenshotet në Desktop:
+Screenshot-et e testimit janë ruajtur në folderin `Java-07-Screenshotet` në Desktop:
 
-1. 01-lista-udhetimeve.png
-2. 02-udhetimi-3-plot.png
-3. 03-udhetimi-1-vende-lira.png
+1. `01-lista-udhetimeve.png`
+2. `02-udhetimi-3-plot.png`
+3. `03-udhetimi-1-vende-lira.png`
 
 ## Gjendja e dorëzimit
 
-Kodi dhe raporti janë publikuar në degën main të GitHub. Demonstrimi me kolegun ende nuk është realizuar.
+Kodi dhe raporti janë publikuar në degën `main` të GitHub. Demonstrimi me kolegun ende nuk është realizuar.
