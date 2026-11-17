@@ -103,12 +103,12 @@ Ndryshimi u kontrollua dhe u testua manualisht në aplikacionin lokal me dy rast
 
 ## 8. Dëshmitë dhe gjendja e dorëzimit
 
-Dëshmitë që duhet të ruhen në dosjen e dorëzimit:
+Tri screenshot-et e testimit janë realizuar dhe ruajtur në folderin `Java-07-Screenshotet` në Desktop:
 
 1. Screenshot i listës ku udhëtimi ID 3 shfaqet “Plot” dhe ka lidhjen “Shiko udhëtimin”.
 2. Screenshot i detajeve të udhëtimit ID 3 me 0 vende të lira dhe mesazhin “Nuk ka vende të lira”.
 3. Screenshot i detajeve të udhëtimit ID 1 me 2 vende të lira dhe butonin “Kërko vend”.
 
-**Gjendja e GitHub:** Commit-i dhe push-i përfundimtar ende duhet të kryhen dhe të verifikohen.
+**Gjendja e GitHub:** Ndryshimet e Javës 7 janë kryer me sukses në commit dhe janë publikuar në degën `main` të GitHub.
 
-**Demo me kolegun:** Ende nuk është realizuar.
+**Demo me kolegun:** Ende nuk është realizuar. Mbetet për t'u demonstruar puna dhe rezultatet e testimit.
