@@ -24,15 +24,9 @@ export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
                 ? "1 vend i lirë"
                 : `${udhetim.vende} vende të lira`}
           </span>
-          {paVende ? (
-            <button className="button button--muted" disabled>
-              Nuk ka vende
-            </button>
-          ) : (
-            <Link className="button button--small" href={`/udhetimi/${udhetim.id}`}>
-              Shiko udhëtimin
-            </Link>
-          )}
+          <Link className="button button--small" href={`/udhetimi/${udhetim.id}`}>
+            Shiko udhëtimin
+          </Link>
         </div>
       </div>
     </article>

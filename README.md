@@ -74,3 +74,4 @@ SELECT id, ora, shofer_id FROM udhetimet ORDER BY id;
 - Raporti i Javës 3: [`java-03.md`](./java-03.md)
 - Raporti i Javës 4: [`java-04.md`](../java-04.md)
 - Raporti i Javës 5: [`java-05.md`](../java-05.md)
+- Raporti i Javës 7: [`java-07.md`](./java-07.md)
