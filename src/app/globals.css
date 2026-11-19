@@ -202,6 +202,64 @@ button {
   box-shadow: 0 0 0 4px rgba(78, 170, 120, 0.14);
 }
 
+.driver-requests {
+  margin: 30px 0;
+}
+
+.driver-requests__heading,
+.driver-request {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.driver-requests__heading h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.driver-requests__refresh,
+.driver-request__details,
+.driver-request__status,
+.driver-requests__empty {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.driver-requests__connection {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #81512b;
+  background: #fff2df;
+  font-size: 13px;
+}
+
+.driver-requests__list {
+  display: grid;
+  margin: 16px 0;
+  padding: 0;
+  gap: 10px;
+  list-style: none;
+}
+
+.driver-request {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.driver-request__route {
+  margin: 0;
+  font-weight: 700;
+}
+
+.driver-request__details,
+.driver-request__status {
+  margin: 6px 0 0;
+}
+
 .rides {
   padding: 30px 0 72px;
   border-top: 1px solid rgba(24, 42, 42, 0.1);
@@ -692,6 +750,15 @@ button {
 
   .account-shell form {
     padding: 18px;
+  }
+
+  .driver-requests__heading,
+  .driver-request {
+    align-items: flex-start;
+  }
+
+  .driver-request {
+    flex-direction: column;
   }
 
   .rides {
