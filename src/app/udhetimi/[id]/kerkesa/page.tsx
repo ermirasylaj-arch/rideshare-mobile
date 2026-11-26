@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gjejUdhetimin } from "@/lib/udhetimet";
+import KerkesaKlienti from "@/components/KerkesaKlienti";
 
 export const dynamic = "force-dynamic";
 
@@ -35,17 +36,11 @@ export default async function Kerkesa({
       <Link className="back-link" href={`/udhetimi/${id}`}>← Kthehu te detajet</Link>
       <section className="request-panel">
         {udhetim.vende > 0 ? (
-          <>
-            <span className="request-icon" aria-hidden="true">✓</span>
-            <p className="eyebrow">HAPI I FUNDIT · DEMONSTRIM</p>
-            <h1>Simulim: Në pritje</h1>
-            <p>
-              Kërkesa për {udhetim.nisja} nuk është dërguar te shoferi.
-            </p>
-            <p className="request-panel__note">
-              Ruajtjen dhe konfirmimin real do t’i shtojmë më vonë.
-            </p>
-          </>
+          <KerkesaKlienti
+            udhetimId={id}
+            nisja={udhetim.nisja}
+            destinacioni={udhetim.destinacioni}
+          />
         ) : (
           <>
             <span className="request-icon request-icon--quiet" aria-hidden="true">!</span>

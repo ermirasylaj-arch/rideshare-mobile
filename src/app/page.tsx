@@ -90,7 +90,7 @@ export default async function Home() {
           />
         )}
         <p className="demo-note">
-          Kërkesat në këtë demonstrim nuk krijojnë rezervime të vërteta.
+          Kërkesat ruhen me llogarinë tuaj dhe mund të sjellin njoftime personale.
         </p>
       </section>
     </main>

@@ -445,6 +445,62 @@ button {
   margin-top: 28px;
 }
 
+.notifications {
+  margin-top: 28px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.notifications__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.notifications__heading h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.notifications__list {
+  display: grid;
+  margin: 16px 0;
+  padding: 0;
+  gap: 10px;
+  list-style: none;
+}
+
+.notifications__list li {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.notifications__unread {
+  border-color: #bdd5c5 !important;
+  background: var(--mint);
+}
+
+.notifications__list li span {
+  float: right;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.notifications__list li p {
+  margin: 8px 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.notifications__empty {
+  color: var(--muted);
+}
+
 @media (max-width: 560px) {
   .site-header,
   .page-shell,
